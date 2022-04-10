@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coderkan.imageserver.helpers.FileNameHelper;
@@ -60,10 +61,9 @@ public class Image extends BaseEntity {
 	 */
 	@Transient
 	public static Image build() {
-		String uuid = UUID.randomUUID().toString();
 		Image image = new Image();
 		Date now = new Date();
-		image.setUuid(uuid);
+		image.setUuid("");
 		image.setCreatedDate(now);
 		image.setUpdatedDate(now);
 		image.setCreatedBy("default");
@@ -163,6 +163,7 @@ public class Image extends BaseEntity {
 		String fileName = helper.generateDisplayName(file.getOriginalFilename());
 
 		Image image = Image.build();
+		image.setUuid(StringUtils.cleanPath(fileName));
 		image.setFileName(fileName);
 		image.setFiles(file);
 

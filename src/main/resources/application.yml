@@ -34,9 +34,9 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/imageserver
     username: postgres
-    password: ekoloji
+    password: 1234
 server:
   port: 8080
 
